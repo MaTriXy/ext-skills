@@ -251,7 +251,7 @@ For background on the ADR format, see [adr.github.io](https://adr.github.io/).
 
 ### 2026-06-09: Directory enumeration via a dedicated `resources/directory/read` method
 
-**Status:** Proposed — amended 2026-07-16: retained in SEP-2640 v1 as an optional feature gated behind the `directoryRead` capability setting
+**Status:** Accepted — amended 2026-07-16: retained in SEP-2640 v1 as an optional feature gated behind the `directoryRead` capability setting
 
 **Context:** A skill is a directory of files, and hosts that materialize a skill (or otherwise walk its contents) need to enumerate the files under a skill root without already knowing every URI. An earlier SEP draft did this with a scoped `resources/list(uri="skill://…")` call, but the base MCP spec does not guarantee scoped `resources/list`, leaving this extension with a protocol dependency it could not rely on (the SEP's "Why an Index Resource Rather Than `resources/list`?" section records the move away from that approach). The 2026-06-02 Working Session listed "try to get `resources/list(uri)` into the protocol" as an action item; the MCP core maintainer (dsp) was on board, leaving the WG to spec the mechanism. The design was worked out over the following week in the SEP feedback thread and landed in [SEP-2640](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640) on 2026-06-09.
 
@@ -281,7 +281,7 @@ Returning metadata-only (URIs + descriptive fields, no contents) keeps the call 
 
 ### 2026-07-15: Add `skills/get` for single-skill entry retrieval
 
-**Status:** Proposed
+**Status:** Accepted
 
 **Context:** 
 
@@ -303,7 +303,7 @@ Aditya (@aditya-scio) raised the gap in [SEP-2640 review](https://github.com/mod
 
 ### 2026-07-16: Scope SEP-2640 down to a v1: required `skills/list` + `skills/get`, per-file digests, no archives
 
-**Status:** Proposed
+**Status:** Accepted
 
 **Context:** At the [June 24, 2026 core-maintainer meeting](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/2976) the vote on SEP-2640 was deferred with structural concerns: archive delivery was the main sticking point (unpacking complexity and risk, and giving up the governance advantages MCP provides), `skill://index.json` was flagged as a proprietary format outside the official skill spec that complicates permissions and TTL handling, and the proposal was seen as conflating "serve skills over MCP" with a general distribution mechanism, with script-execution risk in the background. The [June 30, 2026 WG session](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/2994) resolved to scope the extension down to the minimal shape the core maintainers would accept — per the lead maintainer's guidance, break it into something small, land it, and layer complexity afterward — deferring archives and resolving the smaller open items (index transport, name conflicts). A [core-maintainer alignment document](https://docs.google.com/document/d/1llJ667kyIu5ZA_-A8U1AntWUxMW65iXaLT-3elfi3J4/edit) was reviewed with the CMs in early July, and the rework landed on the SEP branch as a commit series between July 8 and July 15, 2026. This entry consolidates that v1 shape into a single record for WG review.
 
@@ -337,7 +337,7 @@ Keeping optionality to a single feature flag responds to the CM position that op
 
 ### 2026-09-08: Stable spec page: caching attributes on `skills/list` and `skills/get`, and the `resources` capability dependency
 
-**Status:** Proposed
+**Status:** Accepted — applied to `specification/stable/skills.mdx` in [PR #139](https://github.com/modelcontextprotocol/ext-skills/pull/139) (merged 2026-09-10), before SEP-2640 was marked Final
 
 **Context:** [`specification/stable/skills.mdx`](../specification/stable/skills.mdx) ([PR #138](https://github.com/modelcontextprotocol/ext-skills/pull/138)) renders SEP-2640 as a spec page written against base protocol revision `2026-07-28`. Review by @panyam against the traceability extraction maintained for the conformance suite ([conformance#330](https://github.com/modelcontextprotocol/conformance/pull/330)) found three places where the page diverged from, or went beyond, the SEP text without recording it:
 
