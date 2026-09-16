@@ -1,5 +1,37 @@
 # Contributing
 
+## Documentation Website
+
+Use Node.js 22 or later:
+
+```sh
+npm ci
+npm run docs:dev
+```
+
+Before submitting a change, build and preview the production site:
+
+```sh
+npm run docs:build
+npm run docs:preview
+```
+
+The site follows the Tasks extension layout: an overview at `/` and a separate
+specification page. `index.md` includes excerpts from the released
+`specification/stable/skills.mdx` using VitePress Markdown includes; it does not
+maintain a second copy of that text. The include ranges refer to the stable
+snapshot; update them when switching the overview to a new revision.
+The adjacent `specification/stable/skills.md` includes the full specification
+text. Follow the [specification change process](AGENTS.md#proposing-changes-to-the-specification)
+when proposing changes.
+Navigation links to the condensed overview on the
+[MCP website](https://modelcontextprotocol.io/extensions/skills/overview).
+Working Group research and historical documents under `docs/` remain available on GitHub.
+
+Pull requests build the website in CI, including contributions from forks.
+Broken internal page links fail the build. Cloudflare Pages builds the site with
+`npm run docs:build` and serves `.vitepress/dist`.
+
 ## How to Participate
 
 This Working Group welcomes contributions from anyone interested in skills distribution over MCP. You can participate by:
